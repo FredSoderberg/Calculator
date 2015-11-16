@@ -1,0 +1,7 @@
+package symbolic
+
+public class Sub extends Binary {
+
+    public Sub(){
+    }
+}
