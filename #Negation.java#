@@ -1,0 +1,11 @@
+package symbolic;
+
+public class Negation {
+
+    public Negation() {
+    }
+    public String getName() {
+    }
+    public Sexpr eval(map) {
+    }
+}
