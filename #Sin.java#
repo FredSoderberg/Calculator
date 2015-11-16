@@ -1,6 +1,0 @@
-package symbolic;
-
-public class Sin extends Unary {
-    public Sin() {
-    }
-}
