@@ -1,5 +1,13 @@
 package symbolic;
-public class log extends Unary {
-    public log() {
+public class Log extends Unary {
+    public Log() {
+    }
+
+    public String getName() {
+	
+    }
+
+    public Sexpr eval(map) {
+	
     }
 }

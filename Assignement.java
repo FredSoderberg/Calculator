@@ -1,8 +1,8 @@
 package symbolic;
 
-public class Div extends Binary {
+public class Assignement extends Binary {
 
-    public Div () {
+    public Assignement () {
 	
     }
 

@@ -6,5 +6,7 @@ class Vars extends Command {
 	
     }
 
-    
+    public Sexpr eval(map) {
+	
+    }
 }

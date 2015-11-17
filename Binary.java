@@ -7,5 +7,7 @@ public abstract class Binary extends Sexpr{
     public Binary() {
     }
 
-    public String toString()
+    public String toString() {
+	return "("+left+" "+getName()+" "+right+")";
+    }
 }
