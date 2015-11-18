@@ -26,8 +26,9 @@ public abstract class Sexpr{
 		System.out.print("? ");
 		Sexpr e = p.statement();
 		System.out.println("Inläst uttryck: " + e);  // För kontroll
-		    System.out.println(e.eval(variables));
-		    // } catch () {
+		System.out.println(e.eval(variables));
+		return;
+	        // } catch () {
 		
 	    }
     }
