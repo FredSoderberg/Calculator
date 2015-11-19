@@ -1,0 +1,6 @@
+class Rooms {
+    private String name;
+    private ArrayList<Items> items;
+    private ArrayList<Creatures> Cretaures;
+    private ArrayList<Rooms> s
+}
