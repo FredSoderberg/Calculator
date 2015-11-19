@@ -6,7 +6,7 @@ public class Avatar {
     private Backpack inventory;
     private Room inRoom;
 
-    public Avatar(ArrayList<Courses> doneCourses, ArrayList<Courses> undoneCourses, Room inRoom) {
+    public Avatar(ArrayList<Courses> doneCourses, Room inRoom) {
 	this.doneCourses = doneCourses;
 	this.undoneCourses = new ArrayList<Courses>();
 	this.HP = 60;
@@ -50,6 +50,9 @@ public class Avatar {
 
     public void drop(Items item){
 	inventory.removeItem(item);
+    }
+    public Room whichRoom(){
+	return room;
     }
 
 }

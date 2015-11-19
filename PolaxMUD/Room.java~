@@ -1,0 +1,12 @@
+public class Room {
+    
+    private String name;
+    private String[] room;
+    private String[] locked;
+    private ArrayList<Creatures> creatures;
+    private ArrayList<Items> items;
+
+    public Room(String name, String[] room, String[] locked, ArrayList<Creatures> creatures, ArrayList<Items> items) {
+	
+    }
+}
