@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Avatar {
     
     private ArrayList<Courses> doneCourses;
@@ -10,8 +12,11 @@ public class Avatar {
 	this.doneCourses = doneCourses;
 	this.undoneCourses = new ArrayList<Courses>();
 	this.HP = 60;
-	this.backpack = new Backpack();
+	this.inventory = new Backpack();
 	this.inRoom = inRoom;
+    }
+
+    public Avatar(){
     }
 
 
@@ -21,10 +26,10 @@ public class Avatar {
 	private int space = 10;
 	private int freeSpace;
 	private ArrayList<Items> items;
-    }
+    
 
     private Backpack () {
-	freespace = space;
+	freeSpace = this.space;
 	items = new ArrayList<Items>();
     }
     
@@ -35,13 +40,13 @@ public class Avatar {
     private void removeItem(Items item) {
 	items.remove(item);
     }
-
+    }
 
 
 
     
     public void moveTo(Room newRoom) {
-	currentRoom = newRoom;
+	inRoom = newRoom;
     }
 
     public void pickUp(Items item) {
@@ -52,7 +57,7 @@ public class Avatar {
 	inventory.removeItem(item);
     }
     public Room whichRoom(){
-	return room;
+	return inRoom;
     }
 
 }

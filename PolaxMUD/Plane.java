@@ -1,6 +1,9 @@
-public class Plan {
-    ArrayList<Room> classRoom;
-    Arraylist<Room> hallway;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Plane {
+    private ArrayList<Room> classRoom;
+    private ArrayList<Room> hallway;
 
     public void addClassRoom(Room classRoom) {
 	this.classRoom.add(classRoom);
@@ -10,12 +13,12 @@ public class Plan {
     }
     public Room searchFor(String room){
 	for (Room thisRoom : classRoom){
-	    if (thisRoom.isyourName(room)){
+	    if (thisRoom.isYourName(room)){
 		    return thisRoom;
 		}
 	}
-	for (Room thishallway : hallway){
-	    if(thisHallway.isyourName(Hallway)){
+	for (Room thisHallway : hallway){
+	    if(thisHallway.isYourName(room)){
 		return thisHallway;
 	    }
 	}

@@ -1,56 +1,53 @@
+import java.util.*;
+
 public class Room {
     
     private String name;
-    private String[] room;
-    private String[] locked;
+    private HashMap<CardinalD, Room> adjacentRooms;
+    private HashMap<CardinalD, Boolean> keyHoles;
     private ArrayList<Creatures> creatures;
     private ArrayList<Items> items;
 
-    public Room(String name, String[] room, String[] locked, ArrayList<Creatures> creatures, ArrayList<Items> items) {
-	this.name = name;
-	this.room = room;
-	this.locked = locked;
+    public Room(String newName) {
+        name = newName;
+    }
+    
+    public Room(String newName, HashMap<CardinalD, Room> adjacentRooms, HashMap<CardinalD, Boolean> keyHoles) {
+	this.name = newName;
+	this.adjacentRooms = adjacentRooms;
+	this.keyHoles = keyHoles;
+    }
+    
+    public Room(String newName,HashMap<CardinalD, Room> adjacentRooms, HashMap<CardinalD, Boolean> keyHoles, ArrayList<Creatures> creatures, ArrayList<Items> items) {
+	this.name = newName;
+	this.adjacentRooms = adjacentRooms;
+	this.keyHoles = keyHoles;
 	this.creatures = creatures;
 	this.items = items;
     }
+    
     public Room() {
     }
-    public boolean isExit(int direction) {
-	if (room[direction] =! 'x'){
-	    return true;
-	}
-	return false; 
+    
+    public boolean isExit(CardinalD dir) {
+	return adjacentRooms.containsKey(dir);
     }
-	/**	switch(direction) {
-	case "north": if (room[0] =! 'x')
-		return true;
-	case "east": if (room[1] =! 'x')
-		return true;
-	case "south": if (room[2] =! 'x')
-		return true;
-	case "west": if (room[3] =! 'x')
-		return true;
-	deafault: return false;
-	}
+    
+    public boolean isUnlocked(CardinalD dir) {
+	return keyHoles.get(dir);
     }
-	*/
-    public boolean isLocked(int direction) {
-	if (locked[direction] =! "true") {
-	    return true;
-	}
-	return false;
+
+    public Room getAdjacentRoom(CardinalD dir){
+	return adjacentRooms.get(dir);
     }
-    public String nameOf(int direction) {
-	return room[direction];
-    }
-    public boolean isyourName(String roomName) {
+   
+    public boolean isYourName (String roomName) {
 	return roomName == name; 
     }
+    
     public String toString() {
-	String ret = "You stand in room" + name "\n\n";
-	for (
-
-return ret;
+	String ret = "You stand in room" + name + "\n\n";
+	return ret;
     }
     
 }

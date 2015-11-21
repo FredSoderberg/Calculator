@@ -1,22 +1,33 @@
-JCC = javac
+JFLAGS = -g
 JUNITTEST = org.junit.runner.JUnitCore
 CLASSPATH =.:junit-4.10.jar:hamcrest-core-1.3.jar
-JFLAGS = -g -ea
+JC = javac
+.SUFFIXES: .java .class
+.java.class:
+	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	Avatar.java
+	Avatar.java\
+	Builder.java\
+	CardinalD.java\
+	Courses.java\
+	Creatures.java\
+	East.java\
+	Game.java\
+	Items.java\
+	Key.java\
+	North.java\
+	Plane.java\
+	Room.java\
+	South.java\
+	West.java
 
 
 
-
-.SUFFIXES: .java .class
-
-.java.class:
-	$(JCC) $(JFLAGS) $*.java
 
 default: classes
 
-all: $(CLASSES:.java=.class)
+classes: $(CLASSES:.java=.class)
 
 test: all
 	java -cp $(CLASSPATH) $(JUNITTEST) TestAll

@@ -5,4 +5,8 @@ public abstract class Items {
 	volume = litres;
     }
 
+    public int getVolume(){
+	return volume;
+    }
+
 }
