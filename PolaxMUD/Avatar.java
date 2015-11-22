@@ -27,23 +27,20 @@ public class Avatar {
 	private ArrayList<Items> items;
     
 
-    private Backpack () {
-	freeSpace = this.space;
-	items = new ArrayList<Items>();
-    }
+	private Backpack () {
+	    freeSpace = this.space;
+	    items = new ArrayList<Items>();
+	}
     
-    private void addItem(Items item) {
-	items.add(item);
+	private void addItem(Items item) {
+	    items.add(item);
+	}
+
+	private void removeItem(Items item) {
+	    items.remove(item);
+	}
     }
 
-    private void removeItem(Items item) {
-	items.remove(item);
-    }
-    }
-
-
-
-    
     public void moveTo(Room newRoom) {
 	inRoom = newRoom;
     }
@@ -57,6 +54,30 @@ public class Avatar {
     }
     public Room whichRoom(){
 	return inRoom;
+    }
+
+    public boolean moveAvatar(String direction) {
+	Room currRoom = this.whichRoom();
+	CardinalD newDir;
+	System.out.printf(direction);
+	switch(direction) {
+	case "north": newDir = new North();
+	    break;
+	case "east": newDir = new East();
+	    break;
+	case "south": newDir = new South();
+	    break;
+	case "west": newDir = new West();
+	    break;
+	default: System.out.println("Not a acceptable direction");
+	    return false;
+	}
+       	if(currRoom.isExit(newDir) && currRoom.isUnlocked(newDir)){
+	    Room newRoom = currRoom.getAdjacentRoom(newDir);
+	    this.moveTo(newRoom);
+	    return true;
+	}
+	return false;
     }
 
 }
