@@ -1,15 +1,15 @@
 import java.util.*;
 
 public class Room {
-    
     private String name;
     private HashMap<CardinalD, Room> adjacentRooms;
     private HashMap<CardinalD, Boolean> keyHoles;
     private ArrayList<Creatures> creatures;
     private ArrayList<Items> items;
 
-    public Room(String newName) {
+    public Room(String newName, HashMap<CardinalD,Boolean> unlocks) {
         name = newName;
+	keyHoles = unlocks;
     }
     
     public Room(String newName, HashMap<CardinalD, Room> adjacentRooms, HashMap<CardinalD, Boolean> keyHoles) {

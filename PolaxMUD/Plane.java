@@ -5,12 +5,23 @@ public class Plane {
     private ArrayList<Room> classRoom;
     private ArrayList<Room> hallway;
 
+    public Plane () {
+	classRoom = new ArrayList<Room>();
+	hallway = new ArrayList<Room>();
+    }
+
     public void addClassRoom(Room classRoom) {
 	this.classRoom.add(classRoom);
     }
-    public void addhallway(Room hallway) {
+    
+    public void addHallway(Room hallway) {
 	this.hallway.add(hallway);
     }
+
+    public Room startingPoint() {
+	return hallway.get(0);
+    }
+    
     public Room searchFor(String room){
 	for (Room thisRoom : classRoom){
 	    if (thisRoom.isYourName(room)){

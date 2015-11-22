@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Avatar {
-    
     private ArrayList<Courses> doneCourses;
     private ArrayList<Courses> undoneCourses;
     private int HP;
