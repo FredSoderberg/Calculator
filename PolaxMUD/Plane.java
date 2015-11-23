@@ -18,7 +18,7 @@ public class Plane {
 	this.hallway.add(hallway);
     }
 
-    public Room startingPoint() {
+    public Room getStartingPoint() {
 	return hallway.get(0);
     }
     

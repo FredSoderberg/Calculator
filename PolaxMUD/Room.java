@@ -10,25 +10,14 @@ public class Room {
     public Room(String newName, HashMap<CardinalD,Boolean> unlocks) {
         name = newName;
 	keyHoles = unlocks;
-    }
-    
-    public Room(String newName, HashMap<CardinalD, Room> adjacentRooms, HashMap<CardinalD, Boolean> keyHoles) {
-	this.name = newName;
-	this.adjacentRooms = adjacentRooms;
-	this.keyHoles = keyHoles;
-    }
-    
-    public Room(String newName,HashMap<CardinalD, Room> adjacentRooms, HashMap<CardinalD, Boolean> keyHoles, ArrayList<Creatures> creatures, ArrayList<Items> items) {
-	this.name = newName;
-	this.adjacentRooms = adjacentRooms;
-	this.keyHoles = keyHoles;
-	this.creatures = creatures;
-	this.items = items;
+	adjacentRooms = new HashMap<CardinalD, Room>();
+	creatures = new ArrayList<Creatures>();
+	items = new ArrayList<Items>();
     }
     
     public Room() {
     }
-    
+
     public boolean isExit(CardinalD dir) {
 	return adjacentRooms.containsKey(dir);
     }
@@ -37,16 +26,44 @@ public class Room {
 	return keyHoles.get(dir);
     }
 
+    public void addAdjacentRooms(HashMap<CardinalD, Room> adjacentRooms) {
+	this.adjacentRooms = adjacentRooms;
+    }
+
+    public void addCreatures(ArrayList<Creatures> creatures) {
+	this.creatures = creatures;
+    }
+
+    public void addItems(ArrayList<Items> items) {
+	this.items = items;
+    }
+    
     public Room getAdjacentRoom(CardinalD dir){
 	return adjacentRooms.get(dir);
     }
+
+    public String getName() {
+	return name;
+    }
    
     public boolean isYourName (String roomName) {
-	return roomName == name; 
+	return name.equals(roomName); 
     }
     
     public String toString() {
-	String ret = "You stand in room" + name + "\n\n";
+
+	String occupants = "";
+	String localItems = "";
+	String exits = "";
+	for (Creatures creature : creatures) occupants += "a "+creature.getName()+"\n";
+	for (Items currItem : items) localItems += "a "+currItem.getName()+"\n";
+	for(CardinalD dir: adjacentRooms.keySet()){
+            exits += dir.getDirection()  +" - "+ adjacentRooms.get(dir).getName();
+	}
+	
+	String ret = "You stand in " + name + "\n"
+	    + "\nIn the room there is:\n" + occupants + localItems
+	    + "\nThe exits are:\n" + exits;
 	return ret;
     }
     
