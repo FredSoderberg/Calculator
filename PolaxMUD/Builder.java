@@ -89,12 +89,36 @@ public class Builder {
 	return retList;
     }
 
+    public void addTeachers() {
+	
+    }
+
+    public void addStudents() {
+	
+    }
+
+    public void addKeys() {
+	int amountOfLocked = 0;
+	try {
+	    Scanner scan = new Scanner(this.classRooms);
+	    while(scan.hasNextLine()){
+		String[] parse = scan.nextLine().split(";");
+	
+	    }
+	    scan.close();
+	}
+	catch (FileNotFoundException e) {
+	    e.printStackTrace();
+	}
+
+    }
+
     private ArrayList<CardinalD> createDirTable(){
 	ArrayList<CardinalD> directions = new ArrayList<CardinalD>();
-	directions.add(new CardinalD(0));
-	directions.add(new CardinalD(1));
-	directions.add(new CardinalD(2));
-	directions.add(new CardinalD(3));
+	directions.add(new North());
+	directions.add(new East());
+	directions.add(new South());
+	directions.add(new West());
 	return directions;
     }
     

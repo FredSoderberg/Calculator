@@ -1,11 +1,17 @@
 public class North extends CardinalD {
-    int value = 0;
 
-    public int getValue() {
-	return value;
+    @Override
+    public int hashCode() {
+        return 0;
     }
 
+        @Override
+    public boolean equals(Object o) {
+        return (o instanceof North);
+    }
+    
     public String toString() {
-	return "North";
+        return "north";
     }
+    
 }

@@ -58,12 +58,12 @@ public class Room {
 	for (Creatures creature : creatures) occupants += "a "+creature.getName()+"\n";
 	for (Items currItem : items) localItems += "a "+currItem.getName()+"\n";
 	for(CardinalD dir: adjacentRooms.keySet()){
-            exits += dir.getDirection()  +" - "+ adjacentRooms.get(dir).getName();
+            exits += dir  +" - "+ adjacentRooms.get(dir).getName();
 	}
 	
 	String ret = "You stand in " + name + "\n"
 	    + "\nIn the room there is:\n" + occupants + localItems
-	    + "\nThe exits are:\n" + exits;
+	    + "\nThe exits are:\n" + exits + "\n";
 	return ret;
     }
     

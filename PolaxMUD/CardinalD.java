@@ -1,3 +1,7 @@
+public abstract class CardinalD {
+}
+
+/*
 public  class CardinalD {
     private String direction;
     private int value;
@@ -5,13 +9,13 @@ public  class CardinalD {
     public CardinalD (String dir) {
 	direction = dir;
 	switch (dir){
-	case "North": value = 0;
+	case "north": value = 0;
 	    break;
-	case "East": value = 1;
+	case "east": value = 1;
 	    break;
-	case "South": value = 2;
+	case "south": value = 2;
 	    break;
-	case "West": value = 3;
+	case "west": value = 3;
 	    break;
 	}
     }
@@ -19,13 +23,13 @@ public  class CardinalD {
     public CardinalD (int value){
 	this.value = value;
 	switch (value){
-	case 0: direction = "North";
+	case 0: direction = "north";
 	    break;
-	case 1: direction = "East";
+	case 1: direction = "east";
 	    break;
-	case 2: direction = "South";
+	case 2: direction = "south";
 	    break;
-	case 3: direction = "West";
+	case 3: direction = "west";
 	    break;
 	}
 	    
@@ -38,6 +42,15 @@ public  class CardinalD {
     public String getDirection() {
 	return direction;
     }
+
+    public Boolean equals(CardinalD toCompare) {
+	if (direction == toCompare.getDirection()
+	    &&
+	    value == toCompare.getValue()) {
+	    return true;
+	}
+	return false;
+    }
 }
-    
+*/
 

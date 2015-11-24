@@ -15,12 +15,6 @@ public class Avatar {
 	this.inRoom = inRoom;
     }
 
-    public Avatar(){
-    }
-
-
-
-
     private class Backpack {
 	private int space = 10;
 	private int freeSpace;
@@ -59,7 +53,6 @@ public class Avatar {
     public boolean moveAvatar(String direction) {
 	Room currRoom = this.whichRoom();
 	CardinalD newDir;
-	System.out.printf(direction);
 	switch(direction) {
 	case "north": newDir = new North();
 	    break;
@@ -71,11 +64,18 @@ public class Avatar {
 	    break;
 	default: System.out.println("Not a acceptable direction");
 	    return false;
-	}
-       	if(currRoom.isExit(newDir) && currRoom.isUnlocked(newDir)){
+
+	if(currRoom.isExit(newDir) && currRoom.isUnlocked(newDir)){
+	    System.out.printf("YAY!!!");
 	    Room newRoom = currRoom.getAdjacentRoom(newDir);
 	    this.moveTo(newRoom);
 	    return true;
+	}
+	else if(currRoom.isExit(newDir) && !currRoom.isUnlocked(newDir)){
+	    System.out.println("Sorry, the door is locked, use a key if you have one!");
+	}
+	else{
+	    System.out.println("Not an exit!");
 	}
 	return false;
     }

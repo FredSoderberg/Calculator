@@ -1,11 +1,17 @@
-public class West extends CardinalD{
-    int value = 3;
+public class West extends CardinalD {
 
-    public int getValue() {
-	return value;
+    @Override
+    public int hashCode() {
+        return 3;
     }
 
+        @Override
+    public boolean equals(Object o) {
+        return (o instanceof West);
+    }
+    
     public String toString() {
-	return "West";
+        return "west";
     }
+    
 }
