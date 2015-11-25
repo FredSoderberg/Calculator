@@ -34,8 +34,17 @@ public class Room {
 	this.creatures = creatures;
     }
 
-    public void addItems(ArrayList<Items> items) {
-	this.items = items;
+    public void addItem(Items itemToAdd) {
+	items.add(itemToAdd);
+    }
+
+    public void removeItem(Items itemToRemove) {
+	for (Items item : items) {
+	    if(item.equals(itemToRemove)) {
+		items.remove(item);
+		return;
+	    }
+	}
     }
     
     public Room getAdjacentRoom(CardinalD dir){
@@ -49,7 +58,24 @@ public class Room {
     public boolean isYourName (String roomName) {
 	return name.equals(roomName); 
     }
-    
+
+    public boolean hasGot(Items itemToFind) {
+	for (Items item : items) {
+	    if(item.equals(itemToFind)) return true;
+	}
+	return false;
+    }
+
+    public Items getItem(Items itemToFind) {
+	for (Items item : items) {
+	    if (item.equals(itemToFind)) {
+		return item;
+	    }
+	}
+	assert(true);
+	return null;
+    }
+      
     public String toString() {
 
 	String occupants = "";
@@ -63,7 +89,7 @@ public class Room {
 	
 	String ret = "You stand in " + name + "\n"
 	    + "\nIn the room there is:\n" + occupants + localItems
-	    + "\nThe exits are:\n" + exits + "\n";
+	    + "\nThe exits are:\n" + exits;
 	return ret;
     }
     

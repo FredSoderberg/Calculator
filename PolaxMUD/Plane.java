@@ -18,6 +18,14 @@ public class Plane {
 	this.hallway.add(hallway);
     }
 
+    public ArrayList<Room> getClassRooms(){
+	return classRoom;
+    }
+
+    public ArrayList<Room> getHallways(){
+	return hallway;
+    }
+    
     public Room getStartingPoint() {
 	return hallway.get(0);
     }

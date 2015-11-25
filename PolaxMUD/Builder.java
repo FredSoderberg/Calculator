@@ -103,6 +103,9 @@ public class Builder {
 	    Scanner scan = new Scanner(this.classRooms);
 	    while(scan.hasNextLine()){
 		String[] parse = scan.nextLine().split(";");
+		for (int i = 5; i < 9; i++) {
+		    if(parse[i].equals("False")) amountOfLocked++;
+		}
 	
 	    }
 	    scan.close();
@@ -110,8 +113,29 @@ public class Builder {
 	catch (FileNotFoundException e) {
 	    e.printStackTrace();
 	}
-
+	int numKeysToCreate = (int) Math.round((amountOfLocked/2) * 1.5);
+	while(numKeysToCreate>0){
+	    for (Room classRoom : plane.getClassRooms()) {
+		if (numKeysToCreate > 0){
+		    numKeysToCreate--;
+		    classRoom.addItem(new Key());
+		}
+		else{
+		return;
+		}
+	    }
+	    for (Room hallway : plane.getHallways()) {
+		if (numKeysToCreate > 0){
+		    numKeysToCreate--;
+		    hallway.addItem(new Key());
+		}
+		else{
+		return;
+		}
+	    }
+	}
     }
+    
 
     private ArrayList<CardinalD> createDirTable(){
 	ArrayList<CardinalD> directions = new ArrayList<CardinalD>();

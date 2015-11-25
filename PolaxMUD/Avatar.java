@@ -33,6 +33,13 @@ public class Avatar {
 	private void removeItem(Items item) {
 	    items.remove(item);
 	}
+
+	private boolean hasGot(Items item) {
+	    for (Items itemInList : items) {
+		if(itemInList.equals(item)) return true;
+	    }
+	    return false;
+	}
     }
 
     public void moveTo(Room newRoom) {
@@ -50,32 +57,39 @@ public class Avatar {
 	return inRoom;
     }
 
-    public boolean moveAvatar(String direction) {
-	Room currRoom = this.whichRoom();
-	CardinalD newDir;
-	switch(direction) {
-	case "north": newDir = new North();
-	    break;
-	case "east": newDir = new East();
-	    break;
-	case "south": newDir = new South();
-	    break;
-	case "west": newDir = new West();
-	    break;
-	default: System.out.println("Not a acceptable direction");
-	    return false;
-
-	if(currRoom.isExit(newDir) && currRoom.isUnlocked(newDir)){
+    public boolean actionMove(CardinalD newDir) {
+	if(inRoom.isExit(newDir) && inRoom.isUnlocked(newDir)){
 	    System.out.printf("YAY!!!");
-	    Room newRoom = currRoom.getAdjacentRoom(newDir);
+	    Room newRoom = inRoom.getAdjacentRoom(newDir);
 	    this.moveTo(newRoom);
 	    return true;
 	}
-	else if(currRoom.isExit(newDir) && !currRoom.isUnlocked(newDir)){
+	else if(inRoom.isExit(newDir) && !inRoom.isUnlocked(newDir)){
 	    System.out.println("Sorry, the door is locked, use a key if you have one!");
 	}
 	else{
 	    System.out.println("Not an exit!");
+	}
+	return false;
+    }
+
+    public boolean actionUnlock(CardinalD newDir) {
+	//kolla ifall man har nyckel
+	if(inventory.hasGot(new Key())) System.out.println("Jag HAR EN NYCKEL BIATCH!!!");
+	//välja dörr
+	//kolla om den finns
+	//kolla om den är låst -.-
+	//låsa upp specifik dörr
+	//ta bort nyckeln
+	return false;	
+    }
+
+    public boolean actionPickup(String item) {
+	if(item.equals("key") && inRoom.hasGot(new Key())) {
+	    Items keyToPickup = inRoom.getItem(new Key());
+	    inRoom.removeItem(keyToPickup);
+	    inventory.addItem(keyToPickup);
+	    return true;
 	}
 	return false;
     }

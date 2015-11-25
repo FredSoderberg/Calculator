@@ -11,8 +11,16 @@ public abstract class Items {
 	return name;
     }
     
-    public int getVolume(){
+    public int getVolume() {
 	return volume;
+    }
+
+    public boolean equals(Items item) {
+	return name == item.getName();
+    }
+
+    public String toString() {
+	return name;
     }
 
 }
