@@ -4,7 +4,8 @@ public abstract class Creatures {
     public Creatures(String newName) {
 	name = newName;
     }
-
+    public abstract void talkWith();
+    
     public String getName() {
         return this.name;
     }

@@ -12,12 +12,16 @@ public class Builder {
     private File courses;
     private File books;
     private Plane plane;
+    private ArrayList<Courses> courseList;
+    private ArrayList<Book> bookList;
     
     public Builder(String classRooms,String courses,String books) {
 	this.classRooms = new File(classRooms);
 	this.courses = new File(courses);
 	this.books = new File(books);
-	plane = new Plane();
+	this.plane = new Plane();
+	this.courseList = new ArrayList<Courses>();
+	this.bookList = new ArrayList<Book>();
     }
 
     public void createRooms() {
@@ -89,8 +93,64 @@ public class Builder {
 	return retList;
     }
 
+    public void createBooks() {
+	try {
+	    Scanner scan = new Scanner(this.books);
+	    while(scan.hasNextLine()){
+		String out = scan.nextLine();
+		String[] parse = out.split(";");
+		Book newBook = new Book(parse[0],
+					parse[1],
+					Integer.valueOf(parse[2]),
+					Integer.valueOf(parse[3]));
+		bookList.add(newBook);
+	    }
+    	scan.close();
+	}
+    	catch (FileNotFoundException e) {
+	    e.printStackTrace();
+	}
+    }
+    
+    public void createCourses() {
+	try {
+	    Scanner scan = new Scanner(this.courses);
+	    while(scan.hasNextLine()){
+		String out = scan.nextLine();
+		String[] parse = out.split(";");
+		Book courseBook = null;
+		for (Book book : bookList) {
+		    if(book.equals(parse[1])) courseBook = book;
+		}
+		Courses newCourse = new Courses(parse[0],
+						courseBook,
+						Integer.valueOf(parse[2]));
+		courseList.add(newCourse);
+	    }
+    	scan.close();
+	}
+    	catch (FileNotFoundException e) {
+	    e.printStackTrace();
+	}
+    }
+
     public void addTeachers() {
-	
+	ArrayList<Room> classRooms = plane.getClassRooms();
+	ArrayList<Teacher> teacherList = new ArrayList<Teacher>();
+	for (Courses course : courseList) {
+	    System.out.println("Skapar " + course);
+	    Teacher newTeacher = new Teacher(course+" teacher",course);
+	    teacherList.add(newTeacher);
+	}
+	for (int i = 0; i < classRooms.size(); i++) {
+	    if(i < teacherList.size()) {
+		System.out.println("test!");
+		classRooms.get(i).addCreature(teacherList.get(i));
+	    }
+	    else {
+		return;
+	    }
+	}
     }
 
     public void addStudents() {
@@ -121,7 +181,7 @@ public class Builder {
 		    classRoom.addItem(new Key());
 		}
 		else{
-		return;
+		    return;
 		}
 	    }
 	    for (Room hallway : plane.getHallways()) {
@@ -130,7 +190,7 @@ public class Builder {
 		    hallway.addItem(new Key());
 		}
 		else{
-		return;
+		    return;
 		}
 	    }
 	}

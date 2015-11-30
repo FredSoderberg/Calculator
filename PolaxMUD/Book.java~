@@ -1,0 +1,11 @@
+public class Book {
+    
+
+    public Items(String itemName, int litres) {
+	name = itemName;
+	volume = litres;
+    }
+
+
+
+}

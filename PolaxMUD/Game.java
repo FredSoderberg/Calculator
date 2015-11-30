@@ -6,10 +6,17 @@ public class Game {
 	boolean quit = false;
 	boolean success = true;
       
-	Builder newBuild = new Builder("Classrooms.txt","Classrooms.txt","Classrooms.txt");
+	Builder newBuild = new Builder("Classrooms.txt","Courses.txt","Books.txt");
+
+
 	newBuild.createRooms();
 	newBuild.linkRooms();
 	newBuild.addKeys();
+	newBuild.createBooks();
+	newBuild.createCourses();
+	newBuild.addTeachers();
+
+	
 	Plane gamePlane = newBuild.getFinishedPlane();
 	ArrayList<Courses> doneCourses = new ArrayList<Courses>();
 	Avatar avatar = new Avatar(doneCourses,gamePlane.getStartingPoint());
@@ -19,7 +26,7 @@ public class Game {
 	while(!quit) {
 	    if (success) {
 		System.out.print("\033[2J\033[;H");
-		System.out.println(avatar.whichRoom());
+		System.out.println("\n\n\n\n\n\n\n\nYour current HP is: "+avatar.getHP()+"\n"+avatar.whichRoom());
 	    }
 	    String input = userInput.nextLine();
 	    success = whatToDo(input, avatar);
@@ -45,7 +52,10 @@ public class Game {
 		return avatar.actionPickup(commands[1]);
 	    case "unlock":newDir = getCardinalD(commands[1]);
 		return avatar.actionUnlock(newDir);
-		
+	    case "drop":
+		return avatar.actionDrop(commands[1]);
+	    case "talk":
+		return avatar.actionTalkTo(commands[1]);
 	    default: System.out.println("Not a valid command, try again!");
 		return false;
 	    }

@@ -1,7 +1,6 @@
 public abstract class CardinalD {
 
-
-
+    public abstract CardinalD getOpp();
 }
 
 /*

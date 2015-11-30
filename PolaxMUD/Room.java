@@ -26,12 +26,22 @@ public class Room {
 	return keyHoles.get(dir);
     }
 
+    public void UnlockKeyHole(CardinalD dir) {
+	keyHoles.replace(dir,true);
+    }
+
+    public void UnlockBothKeyHoles(CardinalD dir) {
+	this.UnlockKeyHole(dir);
+	Room oppositeRoom = this.getAdjacentRoom(dir);
+	oppositeRoom.UnlockKeyHole(dir.getOpp());
+    }
+    
     public void addAdjacentRooms(HashMap<CardinalD, Room> adjacentRooms) {
 	this.adjacentRooms = adjacentRooms;
     }
 
-    public void addCreatures(ArrayList<Creatures> creatures) {
-	this.creatures = creatures;
+    public void addCreature(Creatures creatures) {
+	this.creatures.add(creatures);
     }
 
     public void addItem(Items itemToAdd) {
@@ -87,7 +97,8 @@ public class Room {
             exits += dir  +" - "+ adjacentRooms.get(dir).getName();
 	}
 	
-	String ret = "You stand in " + name + "\n"
+	String ret =
+	    "You stand in " + name + "\n"
 	    + "\nIn the room there is:\n" + occupants + localItems
 	    + "\nThe exits are:\n" + exits;
 	return ret;

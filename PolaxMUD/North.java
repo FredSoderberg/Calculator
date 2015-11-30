@@ -9,6 +9,10 @@ public class North extends CardinalD {
     public boolean equals(Object o) {
         return (o instanceof North);
     }
+
+    public CardinalD getOpp() {
+	    return new South();
+    }
     
     public String toString() {
         return "north";

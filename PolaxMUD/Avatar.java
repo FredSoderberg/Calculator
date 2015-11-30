@@ -30,8 +30,13 @@ public class Avatar {
 	    items.add(item);
 	}
 
-	private void removeItem(Items item) {
-	    items.remove(item);
+	private void removeItem(Items itemToRemove) {
+	    for (Items item : items) {
+		if(item.equals(itemToRemove)) {
+		    items.remove(item);
+		    return;
+		}
+	    }
 	}
 
 	private boolean hasGot(Items item) {
@@ -49,7 +54,7 @@ public class Avatar {
     public void pickUp(Items item) {
 	inventory.addItem(item);
     }
-
+    
     public void drop(Items item){
 	inventory.removeItem(item);
     }
@@ -57,9 +62,12 @@ public class Avatar {
 	return inRoom;
     }
 
+    public int getHP() {
+	return HP;
+    }
+
     public boolean actionMove(CardinalD newDir) {
 	if(inRoom.isExit(newDir) && inRoom.isUnlocked(newDir)){
-	    System.out.printf("YAY!!!");
 	    Room newRoom = inRoom.getAdjacentRoom(newDir);
 	    this.moveTo(newRoom);
 	    return true;
@@ -74,13 +82,17 @@ public class Avatar {
     }
 
     public boolean actionUnlock(CardinalD newDir) {
-	//kolla ifall man har nyckel
-	if(inventory.hasGot(new Key())) System.out.println("Jag HAR EN NYCKEL BIATCH!!!");
-	//välja dörr
-	//kolla om den finns
-	//kolla om den är låst -.-
-	//låsa upp specifik dörr
-	//ta bort nyckeln
+	if(!inventory.hasGot(new Key())) {
+	    System.out.println("You dont have a key(?)");
+	    return false;
+	}
+
+	if(inventory.hasGot(new Key()) && inRoom.isExit(newDir) && !inRoom.isUnlocked(newDir)) {
+	    inventory.removeItem(new Key());
+	    inRoom.UnlockBothKeyHoles(newDir);
+	    System.out.println("Unlocked the door to the " + newDir);
+	    return true;
+	}
 	return false;	
     }
 
@@ -91,7 +103,26 @@ public class Avatar {
 	    inventory.addItem(keyToPickup);
 	    return true;
 	}
+	else{
+	    System.out.println("Not a valid Item");
+	}
 	return false;
     }
 
+    public boolean actionDrop(String item) {
+	if(item.equals("key") && inventory.hasGot(new Key())) {
+	    inventory.removeItem(new Key());
+	    inRoom.addItem(new Key());
+	    return true;
+	}
+	System.out.println("You dont have a "+item+" to drop!");
+	return false;
+    }
+
+    public boolean actionTalkTo(String target) {
+	Room currRoom = inRoom;
+	for (Creatures critt : inRoom.getCreatures()) {
+	    
+	}
+    }
 }

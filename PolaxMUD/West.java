@@ -4,10 +4,14 @@ public class West extends CardinalD {
     public int hashCode() {
         return 3;
     }
-
-        @Override
+    
+    @Override
     public boolean equals(Object o) {
         return (o instanceof West);
+    }
+
+    public CardinalD getOpp() {
+	return new East();
     }
     
     public String toString() {

@@ -1,0 +1,13 @@
+public class Student extends Creatures {
+    private String courseAnsw;
+    private Book courseBook;
+    private Courses courseComp;
+    private Courses courseCurr;
+    
+    public Student(String name, Course doneCourse, Course currentCourse, String correctAns) {
+        super(name);
+	this.doneCourse = doneCourse;
+        this.currentCourse = currentCourse;
+        this.correctAns = correctAns;
+        this.hasTraded = false;
+    }

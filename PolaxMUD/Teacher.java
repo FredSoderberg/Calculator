@@ -1,10 +1,12 @@
-public class Teacher extends Creature {
+public class Teacher extends Creatures {
     private Courses course;
-    private Questions question;
     
-    public Teacher(String name, Courses course, Questions question) {
+    public Teacher(String name, Courses course) {
         super(name);
         this.course = course;
-        this.question = question;
+    }
+
+    public void talkWith() {
+        System.out.println("I am a teacher for " + course + ".");
     }
 }

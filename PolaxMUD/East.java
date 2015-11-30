@@ -10,6 +10,10 @@ public class East extends CardinalD {
         return (o instanceof East);
     }
 
+        public CardinalD getOpp() {
+	return new West();
+    }
+
     
     public String toString() {
         return "east";

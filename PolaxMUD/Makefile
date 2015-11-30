@@ -8,6 +8,7 @@ JC = javac
 
 CLASSES = \
 	Avatar.java\
+	Book.java\
 	Builder.java\
 	CardinalD.java\
 	Courses.java\
@@ -20,6 +21,8 @@ CLASSES = \
 	Plane.java\
 	Room.java\
 	South.java\
+	Student.java\
+	Teacher.java\
 	West.java
 
 
